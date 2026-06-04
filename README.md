@@ -4,7 +4,7 @@ This library implements an Authentication handler for the [Akamai EdgeGrid Authe
 
 ## Install
 
-To use AkamaiOPEN EdgeGrid for Java, you need Java version 11+.
+To use AkamaiOPEN EdgeGrid for Java, you need Java version 21+.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.akamai.edgegrid/edgegrid-signer-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.akamai.edgegrid/edgegrid-signer-parent)
 [![Javadocs](http://www.javadoc.io/badge/com.akamai.edgegrid/edgegrid-signer-parent.svg)](https://www.javadoc.io/doc/com.akamai.edgegrid)

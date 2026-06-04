@@ -1,5 +1,21 @@
 # Change log
 
+## 7.0.0 (Jun 4, 2026)
+
+### BREAKING CHANGES
+
+* Minimum Java version is now 21 (LTS).
+
+### Improvements
+
+* Switched from `maven.compiler.source/target` to `maven.compiler.release=21`.
+* Added explicit `maven-compiler-plugin` 3.13.0 and `maven-surefire-plugin` 3.5.2.
+* Upgraded `maven-javadoc-plugin` to 3.11.2.
+* Upgraded `maven-source-plugin` to 3.3.1.
+* Upgraded `maven-bundle-plugin` (Felix) to 5.1.9.
+* Upgraded `maven-enforcer-plugin` to 3.5.0.
+* Added GitHub Actions CI workflow targeting Temurin 21.
+
 ## 6.0.3 (Sep 29, 2025)
 
 ### Fixes
