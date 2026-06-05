@@ -107,8 +107,8 @@ public class GoogleHttpClientEdgeGridRequestSigner extends AbstractEdgeGridReque
     }
 
     private static String toStringValue(Object headerValue) {
-        return headerValue instanceof Enum<?>
-                ? FieldInfo.of((Enum<?>) headerValue).getName() : headerValue.toString();
+        return headerValue instanceof Enum<?> e
+                ? FieldInfo.of(e).getName() : headerValue.toString();
     }
 
     @Override

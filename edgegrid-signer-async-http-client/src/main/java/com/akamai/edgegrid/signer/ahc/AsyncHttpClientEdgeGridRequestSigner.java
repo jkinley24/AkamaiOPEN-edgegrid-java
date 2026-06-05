@@ -1,7 +1,5 @@
 package com.akamai.edgegrid.signer.ahc;
 
-import com.google.common.primitives.Bytes;
-
 import com.akamai.edgegrid.signer.AbstractEdgeGridRequestSigner;
 import com.akamai.edgegrid.signer.ClientCredential;
 import com.akamai.edgegrid.signer.ClientCredentialProvider;
@@ -12,10 +10,9 @@ import org.asynchttpclient.request.body.generator.FileBodyGenerator;
 import org.asynchttpclient.request.body.generator.InputStreamBodyGenerator;
 import org.asynchttpclient.uri.Uri;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static org.asynchttpclient.util.MiscUtils.isNonEmpty;
@@ -73,11 +70,11 @@ public class AsyncHttpClientEdgeGridRequestSigner extends AbstractEdgeGridReques
         if (request.getByteData() != null) {
             return request.getByteData();
         } else if (request.getCompositeByteData() != null) {
-            List<Byte> buff = new ArrayList<>();
+            var out = new ByteArrayOutputStream();
             for (byte[] bytes : request.getCompositeByteData()) {
-                buff.addAll(Bytes.asList(bytes)); // Without Guava that would be quite cumbersome
+                out.write(bytes, 0, bytes.length);
             }
-            return Bytes.toArray(buff);
+            return out.toByteArray();
         } else if (request.getStringData() != null) {
             return request.getStringData().getBytes();
         } else if (request.getByteBufferData() != null) {
