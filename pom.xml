@@ -63,10 +63,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <slf4j.version>1.7.36</slf4j.version>
-        <logback.version>1.4.14</logback.version>
+        <maven.compiler.release>21</maven.compiler.release>
+        <slf4j.version>2.0.18</slf4j.version>
+        <logback.version>1.5.32</logback.version>
         <netty.version>4.2.6.Final</netty.version>
         <dependency-check.version>12.1.6</dependency-check.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
@@ -95,25 +94,25 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.github.tomakehurst</groupId>
+                <groupId>org.wiremock</groupId>
                 <artifactId>wiremock</artifactId>
-                <version>2.27.2</version>
+                <version>3.13.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>32.1.2-jre</version>
+                <version>33.6.0-jre</version>
             </dependency>
             <dependency>
                 <groupId>com.google.http-client</groupId>
                 <artifactId>google-http-client-apache-v2</artifactId>
-                <version>1.44.2</version>
+                <version>1.47.1</version>
             </dependency>
             <dependency>
                 <groupId>io.rest-assured</groupId>
                 <artifactId>rest-assured</artifactId>
-                <version>4.4.0</version>
+                <version>5.5.7</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -139,12 +138,12 @@
             <dependency>
                 <groupId>org.apache.httpcomponents.core5</groupId>
                 <artifactId>httpcore5</artifactId>
-                <version>5.2.1</version>
+                <version>5.3.4</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents.client5</groupId>
                 <artifactId>httpclient5</artifactId>
-                <version>5.2.1</version>
+                <version>5.4.4</version>
             </dependency>
             <dependency>
                 <groupId>org.asynchttpclient</groupId>
@@ -171,7 +170,7 @@
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
-                <version>7.7.0</version>
+                <version>7.10.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -186,9 +185,19 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.3</version>
+                </plugin>
+                <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.12</version>
+                    <version>0.8.13</version>
                     <executions>
                         <execution>
                             <id>prepare-agent</id>
@@ -207,7 +216,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.4.1</version>
+                    <version>3.12.0</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -220,7 +229,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>3.4.0</version>
                     <executions>
                         <execution>
                             <id>attach-sources</id>
@@ -233,7 +242,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.5.0</version>
                     <configuration>
                         <archive>
                             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
@@ -243,7 +252,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>5.1.2</version>
+                    <version>5.1.9</version>
                     <extensions>true</extensions>
                     <executions>
                         <execution>
@@ -299,7 +308,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.6.3</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -309,7 +318,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.1.0</version>
+                                    <version>3.6.3</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>

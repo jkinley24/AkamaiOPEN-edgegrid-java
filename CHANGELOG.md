@@ -5,6 +5,30 @@
 ### Changes
 
 * Upgraded minimum Java version from 11 to 21 (LTS).
+* Switched `maven.compiler.source`/`target` to `maven.compiler.release`.
+* Added GitHub Actions CI workflow.
+* Added Maven Wrapper (pinned to Maven 3.9.9).
+* Added Dependabot configuration for Maven and GitHub Actions.
+
+### Dependency upgrades
+
+* SLF4J `1.7.36` → `2.0.18`.
+* Logback `1.4.14` → `1.5.32`.
+* WireMock `2.27.2` → `3.13.2` (new coordinates: `org.wiremock:wiremock`).
+* TestNG `7.7.0` → `7.10.2`.
+* REST Assured `4.4.0` → `5.5.7`.
+* Guava `32.1.2-jre` → `33.6.0-jre`.
+* Google HTTP Client `1.44.2` → `1.47.1`.
+* JaCoCo `0.8.12` → `0.8.13`.
+* Maven Javadoc Plugin `3.4.1` → `3.12.0`.
+* Maven Source Plugin `3.2.1` → `3.4.0`.
+* Maven JAR Plugin `3.3.0` → `3.5.0`.
+* Maven Bundle Plugin `5.1.2` → `5.1.9`.
+* Maven Enforcer Plugin `3.1.0` → `3.6.3`.
+* Maven Compiler Plugin → `3.14.0`.
+* Maven Surefire Plugin → `3.5.3`.
+* Apache HttpClient 5 `5.2.1` → `5.4.4`.
+* Apache HttpCore 5 `5.2.1` → `5.3.4`.
 
 ## 6.0.3 (Sep 29, 2025)
 
