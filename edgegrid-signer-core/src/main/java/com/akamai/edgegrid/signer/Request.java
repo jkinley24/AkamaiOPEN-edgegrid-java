@@ -20,11 +20,8 @@ import java.util.Objects;
  */
 public class Request implements Comparable<Request> {
 
-    /** A {@link String} {@link Comparator}. */
-    private static Comparator<String> stringComparator = new NullSafeComparator<>();
-
-    /** A {@link URI} {@link Comparator}. */
-    private static Comparator<URI> uriComparator = new NullSafeComparator<>();
+    private static final Comparator<String> stringComparator = Comparator.nullsFirst(Comparator.naturalOrder());
+    private static final Comparator<URI> uriComparator = Comparator.nullsFirst(Comparator.naturalOrder());
 
     private final byte[] body;
     private final String method;
@@ -93,9 +90,8 @@ public class Request implements Comparable<Request> {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (getClass() != o.getClass()) return false;
-        final Request that = (Request) o;
+        if (this == o) return true;
+        if (!(o instanceof Request that)) return false;
         return compareTo(that) == 0;
     }
 

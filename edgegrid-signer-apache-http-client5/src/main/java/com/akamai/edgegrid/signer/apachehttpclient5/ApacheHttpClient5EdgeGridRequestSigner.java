@@ -64,11 +64,10 @@ public class ApacheHttpClient5EdgeGridRequestSigner extends AbstractEdgeGridRequ
     }
 
     private byte[] serializeContent(HttpRequest request) {
-        if (!(request instanceof HttpEntityContainer)) {
+        if (!(request instanceof HttpEntityContainer entityWithRequest)) {
             return new byte[]{};
         }
 
-        var entityWithRequest = (HttpEntityContainer) request;
         var entity = entityWithRequest.getEntity();
         if (entity == null) {
             return new byte[]{};

@@ -44,11 +44,11 @@ public class ApacheHttpClientEdgeGridRequestSigner extends AbstractEdgeGridReque
 
     @Override
     protected URI requestUri(HttpRequest request) {
-      if (request instanceof HttpRequestWrapper) {
-          String uri = ((HttpRequestWrapper) request).getOriginal().getRequestLine().getUri();
+      if (request instanceof HttpRequestWrapper wrapper) {
+          String uri = wrapper.getOriginal().getRequestLine().getUri();
           return URI.create(uri);
-      } else if (request instanceof RequestWrapper) {
-          String uri = ((RequestWrapper) request).getOriginal().getRequestLine().getUri();
+      } else if (request instanceof RequestWrapper wrapper) {
+          String uri = wrapper.getOriginal().getRequestLine().getUri();
           return URI.create(uri);
       } else {
           return ((HttpRequestBase) request).getURI();
@@ -69,11 +69,10 @@ public class ApacheHttpClientEdgeGridRequestSigner extends AbstractEdgeGridReque
     }
 
     private byte[] serializeContent(HttpRequest request) {
-        if (!(request instanceof HttpEntityEnclosingRequest)) {
+        if (!(request instanceof HttpEntityEnclosingRequest entityWithRequest)) {
             return new byte[]{};
         }
 
-        final HttpEntityEnclosingRequest entityWithRequest = (HttpEntityEnclosingRequest) request;
         HttpEntity entity = entityWithRequest.getEntity();
         if (entity == null) {
             return new byte[]{};
@@ -102,10 +101,10 @@ public class ApacheHttpClientEdgeGridRequestSigner extends AbstractEdgeGridReque
     }
 
     private void setRequestUri(HttpRequest request, URI uri) {
-        if (request instanceof HttpRequestWrapper) {
-            setRequestUri(((HttpRequestWrapper) request).getOriginal(), uri);
-        } else if (request instanceof RequestWrapper) {
-            setRequestUri(((RequestWrapper) request).getOriginal(), uri);
+        if (request instanceof HttpRequestWrapper wrapper) {
+            setRequestUri(wrapper.getOriginal(), uri);
+        } else if (request instanceof RequestWrapper wrapper) {
+            setRequestUri(wrapper.getOriginal(), uri);
         } else {
             ((HttpRequestBase) request).setURI(uri);
         }

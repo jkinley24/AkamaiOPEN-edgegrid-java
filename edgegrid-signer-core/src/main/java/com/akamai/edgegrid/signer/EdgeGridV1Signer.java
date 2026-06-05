@@ -5,14 +5,12 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.TimeZone;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -69,6 +67,10 @@ public class EdgeGridV1Signer {
 
     /** Message signing algorithm. */
     private static final String SIGNING_ALGORITHM = "HmacSHA256";
+
+    /** Thread-safe timestamp formatter (replaces SimpleDateFormat). */
+    private static final DateTimeFormatter TIMESTAMP_FORMATTER =
+            DateTimeFormatter.ofPattern("yyyyMMdd'T'HH:mm:ssZ").withZone(ZoneOffset.UTC);
 
     private static final Logger log = LoggerFactory.getLogger(EdgeGridV1Signer.class);
 
@@ -147,22 +149,14 @@ public class EdgeGridV1Signer {
     }
 
     private static String formatTimeStamp(long time) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd'T'HH:mm:ssZ");
-        Date date = new Date(time);
-        format.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return format.format(date);
+        return TIMESTAMP_FORMATTER.format(Instant.ofEpochMilli(time));
     }
 
     private static String canonicalizeUri(String uri) {
-        if (uri == null || "".equals(uri)) {
+        if (uri == null || uri.isEmpty()) {
             return "/";
         }
-
-        if (uri.charAt(0) != '/') {
-            uri = "/" + uri;
-        }
-
-        return uri;
+        return uri.charAt(0) != '/' ? "/" + uri : uri;
     }
 
     String getSignature(Request request, ClientCredential credential, long timestamp, String nonce)

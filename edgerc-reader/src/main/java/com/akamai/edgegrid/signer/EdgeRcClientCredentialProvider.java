@@ -92,7 +92,7 @@ public class EdgeRcClientCredentialProvider implements ClientCredentialProvider 
      */
     public static EdgeRcClientCredentialProvider fromEdgeRc(String filename, String section)
             throws ConfigurationException, IOException {
-        if (filename == null || "".equals(filename)) {
+        if (filename == null || filename.isEmpty()) {
             throw new IllegalArgumentException("filename cannot be null");
         }
         filename = filename.replaceFirst("^~", System.getProperty("user.home"));
@@ -130,8 +130,8 @@ public class EdgeRcClientCredentialProvider implements ClientCredentialProvider 
      * @return a {@link ClientCredential}
      */
     protected ClientCredential getClientCredential(String sectionName) {
-        SubnodeConfiguration s = configuration.getSection(sectionName);
-        ClientCredentialBuilder builder = ClientCredential.builder()
+        var s = configuration.getSection(sectionName);
+        var builder = ClientCredential.builder()
                 .accessToken(s.getString("access_token"))
                 .clientSecret(s.getString("client_secret"))
                 .clientToken(s.getString("client_token"))
@@ -140,7 +140,7 @@ public class EdgeRcClientCredentialProvider implements ClientCredentialProvider 
             builder.maxBodySize(s.getInteger("max-body", null));
         }
         String headersString = s.getString("headers_to_sign");
-        if (headersString != null && !"".equals(headersString)) {
+        if (headersString != null && !headersString.isEmpty()) {
             for (String h : headersString.split(",")) {
                 builder.headerToSign(h);
             }

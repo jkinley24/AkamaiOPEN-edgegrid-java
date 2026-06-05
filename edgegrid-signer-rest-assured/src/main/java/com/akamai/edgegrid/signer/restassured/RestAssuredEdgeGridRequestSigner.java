@@ -47,12 +47,11 @@ public class RestAssuredEdgeGridRequestSigner extends
             return new byte[0];
         }
 
-        if (requestBody instanceof byte[]) {
-            return (byte[]) requestBody;
-        } else if (requestBody instanceof String){
-            // FIXME(mgawinec) default charset might wrong
-            return ((String)requestBody).getBytes();
-        } else if (requestBody instanceof File){
+        if (requestBody instanceof byte[] bytes) {
+            return bytes;
+        } else if (requestBody instanceof String s) {
+            return s.getBytes();
+        } else if (requestBody instanceof File) {
             throw new IllegalArgumentException("File as request body unsupported");
         } else if (requestBody instanceof InputStream) {
             throw new IllegalArgumentException("InputStream as request body unsupported");

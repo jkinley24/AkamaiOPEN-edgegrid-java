@@ -7,7 +7,9 @@ import java.util.Comparator;
  * implementation simpler.
  *
  * @param <T> any type that implements {@link Comparable}
+ * @deprecated Use {@link Comparator#nullsFirst(Comparator)} with {@link Comparator#naturalOrder()} instead.
  */
+@Deprecated(since = "6.1.0", forRemoval = true)
 public class NullSafeComparator<T extends Comparable<T>> implements Comparator<T> {
 
     @Override

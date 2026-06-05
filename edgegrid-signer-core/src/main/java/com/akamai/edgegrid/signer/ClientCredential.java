@@ -16,11 +16,8 @@ public class ClientCredential implements Comparable<ClientCredential> {
     /** This is the default {@code maxBodySize} to apply if not explicitly set in a credential. */
     public static final int DEFAULT_MAX_BODY_SIZE_IN_BYTES = 131072;
 
-    /** An {@link Integer} {@link Comparator}. */
-    private static Comparator<Integer> integerComparator = new NullSafeComparator<>();
-
-    /** A {@link String} {@link Comparator}. */
-    private static Comparator<String> stringComparator = new NullSafeComparator<>();
+    private static final Comparator<Integer> integerComparator = Comparator.nullsFirst(Comparator.naturalOrder());
+    private static final Comparator<String> stringComparator = Comparator.nullsFirst(Comparator.naturalOrder());
 
     private String accessToken;
     private String clientSecret;
@@ -72,9 +69,8 @@ public class ClientCredential implements Comparable<ClientCredential> {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (getClass() != o.getClass()) return false;
-        final ClientCredential that = (ClientCredential) o;
+        if (this == o) return true;
+        if (!(o instanceof ClientCredential that)) return false;
         return compareTo(that) == 0;
     }
 
