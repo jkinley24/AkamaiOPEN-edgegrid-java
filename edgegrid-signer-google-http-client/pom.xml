@@ -6,7 +6,7 @@
     <parent>
         <artifactId>edgegrid-signer-parent</artifactId>
         <groupId>com.akamai.edgegrid</groupId>
-        <version>6.0.3</version>
+        <version>6.1.0</version>
     </parent>
 
     <artifactId>edgegrid-signer-google-http-client</artifactId>
@@ -28,7 +28,7 @@
             <artifactId>google-http-client-apache-v2</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
+            <groupId>org.wiremock</groupId>
             <artifactId>wiremock</artifactId>
         </dependency>
         <dependency>
