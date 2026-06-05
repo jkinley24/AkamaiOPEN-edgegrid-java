@@ -1,5 +1,11 @@
 # Change log
 
+## 6.1.0 (Jun 5, 2026)
+
+### Changes
+
+* Upgraded minimum Java version from 11 to 21 (LTS).
+
 ## 6.0.3 (Sep 29, 2025)
 
 ### Fixes
